@@ -1,14 +1,38 @@
+version: "3.8"
+
 services:
   n8n:
     image: n8nio/n8n:latest
+    container_name: n8n
+    restart: unless-stopped
+
     ports:
-      - "5678:5678"
+      - "5678:5678"   # Timeweb автоматически проксирует первый опубликованный порт
+
     environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=superpass
+      # --- базовые настройки ---
+      - NODE_ENV=production
       - GENERIC_TIMEZONE=Europe/Moscow
       - TZ=Europe/Moscow
+
+      # --- авторизация для доступа в интерфейс n8n ---
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=superpass123
+
+      # --- включаем возможность использовать внешние модули в Function-ноды ---
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
+
+      # --- путь к сохранению данных ---
+      - N8N_USER_FOLDER=/home/node/.n8n
+
+      # --- если хочешь использовать домен (см. ниже) ---
+      # - N8N_HOST=n8n.example.com
+      # - N8N_PROTOCOL=https
+      # - WEBHOOK_URL=https://n8n.example.com/
+
     volumes:
       - n8n_data:/home/node/.n8n
-    restart: unless-stopped
+
+volumes:
+  n8n_data:

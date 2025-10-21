@@ -17,6 +17,7 @@ ENV NODE_ENV=production
 ENV N8N_RELEASE_TYPE=${N8N_RELEASE_TYPE}
 ENV NODE_ICU_DATA=/usr/local/lib/node_modules/full-icu
 ENV SHELL=/bin/sh
+ENV WEBHOOK_URL=${WEBHOOK_URL}
 
 WORKDIR /home/node
 

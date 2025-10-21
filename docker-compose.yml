@@ -27,8 +27,7 @@ services:
       # --- если хочешь использовать домен (см. ниже) ---
       # - N8N_HOST=n8n.example.com
       # - N8N_PROTOCOL=https
-      # - WEBHOOK_URL=https://n8n.example.com/
-
+      - WEBHOOK_URL=${WEBHOOK_URL}
     volumes:
       - n8n_data:/home/node/.n8n
 

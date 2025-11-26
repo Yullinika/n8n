@@ -3,7 +3,7 @@ ARG N8N_VERSION=snapshot
 ARG LAUNCHER_VERSION=1.4.0
 ARG TARGETPLATFORM
 
-FROM n8nio/base:${NODE_VERSION} AS system-deps
+FROM n8nio/n8n:latest
 
 # Скачиваем и устанавливаем runtime, launcher и т.д.
 FROM alpine:3.22.0 AS launcher-downloader

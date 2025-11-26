@@ -32,8 +32,10 @@ services:
       - WEBHOOK_URL=${WEBHOOK_URL}
       - N8N_PUSH_BACKEND=sse
       - N8N_EDITOR_BASE_URL=${N8N_EDITOR_BASE_URL}
-      - N8N_PROXY_HOPS=1
+      - N8N_PROXY_HOPS=2
 
       # если Origin всё равно чудит — временно отключить проверку
       # (можно закомментировать, попробовать без него, и включить только если ошибка остаётся)
       - N8N_DISABLE_PUSH_ORIGIN_CHECK=true
+      # опционально – привести права на конфиг в порядок
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
